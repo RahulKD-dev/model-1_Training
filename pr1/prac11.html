@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .box {
+        position: absolute;
+        top: 309px;
+        left: 349px;
+        background: linear-gradient(45deg, orange, green);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        line-height: 200px;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        animation: animate 5s ease-in-out infinite;
+      }
+      @keyframes animate {
+        0% {
+          transform: translate3d(0px, 0px, 0px) rotate(0deg);
+        }
+        25% {
+          transform: translate3d(400px, -300px, 0px) rotate(90deg);
+        }
+        50% {
+          transform: translate3d(800px, 0px, 0px) rotate(180deg);
+        }
+        75% {
+          transform: translate3d(400px, 300px, 0px) rotate(270deg);
+        }
+        100% {
+          transform: translate3d(0px, 0px, 0px) rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">Animation</div>
+  </body>
+</html>
