@@ -1,107 +1,296 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Student Registration form</title>
-</head>
-<body>
-  <form action="" method="post">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-
-    <label for="Enrollment">Enrollment No:</label>
-    <input type="number" id="Enrollment" name="Enrollment" required><br><br>
-
-    <label for="branch">Branch:</label>
-    <select name="branch" id="branch">
-      <option value="CSE">Computer Science and Engineering</option>
-      <option value="ECE">Electronics and Communication Engineering</option>
-      <option value="ME">Mechanical Engineering</option>
-    </select><br><br>
-
-    <label for="Division">Division:</label>
-    <input type="text" id="Division" name="Division" required><br><br>
-
-    <label for="gender">Gender:</label>
-    <input type="radio" id="male" name="gender" value="male">
-    <label for="male">Male:</label>
-    <input type="radio" id="female" name="gender" value="female">
-    <label for="female">Female:</label><br><br>
-
-    <label for="telephone">Telephone:</label>
-    <input type="tel" id="telephone" name="telephone" required><br><br>
-
-    <label for="Email">Email:</label>
-    <input type="email" id="Email" name="Email" required><br><br>
-    
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
-    <label for="cnfPassword">Confirm Password:</label>
-    <input type="password" id="cnfPassword" name="cnfPassword" required><br><br>
-
-    <label for="photo">Photo:</label>
-    <input type="file" name="photo" id="photo" accept="image/*"><br><br>
-
-    <label for="Remarks">Remarks:</label>
-    <textarea id="Remarks" name="Remarks"></textarea><br><br>
-
-    <input type="submit" value="Submit">
-    <input type="reset" value="Reset">
-  </form>
-
-  <script>
-    const form = document.querySelector('form');
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('Email').value;
-      const enrollment = document.getElementById('Enrollment').value;
-      const branch = document.getElementById('branch').value;
-      const division = document.getElementById('Division').value;
-      const password = document.getElementById('password').value;
-      const cnfPassword = document.getElementById('cnfPassword').value;
-
-      let enrollmentPattern = /^\d{12}$/;
-      let namePattern =/^[a-zA-Z\s]+$/;
-      let divisionPattern = /^[A-Z]$/;
-      let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      let mobilePattern = /^\d{10}$/;
-      let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
-
-      if (!namePattern.test(name)) {
-        alert('Please enter a valid name');
-        return false;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Registration form</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      if (!enrollmentPattern.test(enrollment)) {
-        alert('Please enter a valid enrollment number');
-        return false;
+      header {
+        width: 100%;
+        height: 100px;
       }
-      if (!divisionPattern.test(division)) {
-        alert('Please enter a valid division');
-        return false;
+      header ul {
+        padding: 10px;
+        background: linear-gradient(45deg, #fbfafa, #3a3939);
+
+        display: flex;
+        justify-content: center;
       }
-      if (!emailPattern.test(email)) {
-        alert('Please enter a valid email');
-        return false;
+      header ul li {
+        list-style: none;
       }
-      // if (!passwordPattern.test(password)) {
-      //   alert('Password must be at least 8 characters long and contain at least one letter and one number');
-      //   return false;
-      // }
-      if (password !== cnfPassword) {
-        alert('Passwords do not match');
-        return false;
+      header img {
+        margin-right: 10px;
+        float: left;
       }
-      if (branch === '') {
-        alert('Please select a branch');
-        return false;
+      header nav {
+        height: 50px;
+        background: linear-gradient(45deg, #4e4b4c, #dedede);
+        display: flex;
+        align-items: center;
       }
-      if (confirm('Are you sure you want to submit the form?')) {
-        form.submit();
+      nav a {
+        margin: 0 30px;
+        text-decoration: none;
+        color: #c00f0f;
       }
-      return true;
-    });
-  </script>
-</body>
+      nav a:hover {
+        height: 40px;
+        text-decoration: underline;
+        color: #ff0707;
+        font-size: 20px;
+      }
+      section {
+        width: 70%;
+        padding: 15px;
+        background-color: #e0e0e0;
+      }
+      aside {
+        width: 30%;
+        padding: 15px;
+        margin-left: 15px;
+        float: right;
+        font-style: italic;
+        background-color: lightgray;
+      }
+      footer {
+        width: 100%;
+        height: 50px;
+        text-align: center;
+        padding: 10px;
+        background-color: #f0f0f0;
+      }
+      .forecast {
+        margin: 0;
+        padding: 0.3rem;
+        background-color: #eeeeee;
+      }
+
+      .forecast > h1,
+      .day-forecast {
+        margin: 0.5rem;
+        padding: 0.3rem;
+        font-size: 1.2rem;
+      }
+
+      .day-forecast {
+        background: right/contain content-box border-box no-repeat
+          url("/shared-assets/images/examples/rain.svg") white;
+      }
+
+      .day-forecast > h2,
+      .day-forecast > p {
+        margin: 0.2rem;
+        font-size: 1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li>
+          <img
+            src="https://silveroakcollege.ca/wp-content/uploads/2025/08/Asset-2.png"
+            width="170px"
+            height="30px"
+          />
+        </li>
+        <li>
+          <h1 style="font-size: 2rem">Silver Oak University</h1>
+        </li>
+      </ul>
+      <nav>
+        <a href="">Home</a>
+        <a href="">About Us</a>
+        <a href="">Admissions</a>
+        <a href="">Academics</a>
+        <a href="">Contact Us</a>
+      </nav>
+    </header>
+
+    <aside>
+      <h2>Important Links</h2>
+      <ul>
+        <li><a href="">Library</a></li>
+        <li><a href="">Hostel</a></li>
+        <li><a href="">Transport</a></li>
+        <li><a href="">Sports</a></li>
+        <li><a href="">Cafeteria</a></li>
+      </ul>
+    </aside>
+    <section>
+      <form action="" method="post">
+        <label for="name">Name:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter Full Name"
+          required
+        /><br /><br />
+
+        <label for="Enrollment">Enrollment No:</label>
+        <input
+          type="number"
+          id="Enrollment"
+          name="Enrollment"
+          placeholder="Enter Your Enrollment No."
+          required
+        /><br /><br />
+
+        <label for="branch">Branch:</label>
+        <select
+          name="branch"
+          id="branch"
+          placeholder="Select Your Branch"
+          required
+        >
+          <option value="CSE">Computer Science and Engineering</option>
+          <option value="ECE">Electronics and Communication Engineering</option>
+          <option value="ME">Mechanical Engineering</option></select
+        ><br /><br />
+
+        <label for="Division">Division:</label>
+        <input
+          type="text"
+          id="Division"
+          name="Division"
+          placeholder="Enter Your Division"
+          required
+        /><br /><br />
+
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="gender" value="male" />
+        <label for="male">Male:</label>
+        <input type="radio" id="female" name="gender" value="female" />
+        <label for="female">Female:</label><br /><br />
+
+        <label for="telephone">Telephone:</label>
+        <input
+          type="tel"
+          id="telephone"
+          name="telephone"
+          placeholder="Enter Your Telephone Number"
+          required
+        /><br /><br />
+
+        <label for="Email">Email:</label>
+        <input
+          type="email"
+          id="Email"
+          name="Email"
+          placeholder="Enter Your Email"
+          required
+        /><br /><br />
+
+        <label for="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Enter Your Password"
+          required
+        /><br /><br />
+        <label for="cnfPassword">Confirm Password:</label>
+        <input
+          type="password"
+          id="cnfPassword"
+          name="cnfPassword"
+          placeholder="Confirm Your Password"
+          required
+        /><br /><br />
+
+        <label for="photo">Photo:</label>
+        <input
+          type="file"
+          name="photo"
+          id="photo"
+          accept="image/*"
+        /><br /><br />
+
+        <label for="Remarks">Remarks:</label>
+        <textarea id="Remarks" name="Remarks"></textarea><br /><br />
+
+        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+      </form>
+    </section>
+
+    <article class="forecast">
+      <h1>Weather forecast for Seattle</h1>
+      <article class="day-forecast">
+        <h2>03 March 2018</h2>
+        <p>Rain.</p>
+      </article>
+      <article class="day-forecast">
+        <h2>04 March 2018</h2>
+        <p>Periods of rain.</p>
+      </article>
+      <article class="day-forecast">
+        <h2>05 March 2018</h2>
+        <p>Heavy rain.</p>
+      </article>
+    </article>
+    <footer>
+      <p>&copy; 2024 Silver Oak University. All rights reserved.</p>
+    </footer>
+    <script>
+      const form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("Email").value;
+        const enrollment = document.getElementById("Enrollment").value;
+        const branch = document.getElementById("branch").value;
+        const division = document.getElementById("Division").value;
+        const password = document.getElementById("password").value;
+        const cnfPassword = document.getElementById("cnfPassword").value;
+
+        let enrollmentPattern = /^\d{12}$/;
+        let namePattern = /^[a-zA-Z\s]+$/;
+        let divisionPattern = /^[A-Z]$/;
+        let emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let mobilePattern = /^\d{1  0}$/;
+        let passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+
+        if (!namePattern.test(name)) {
+          alert("Please enter a valid name");
+          return false;
+        }
+        if (!enrollmentPattern.test(enrollment)) {
+          alert("Please enter a valid enrollment number");
+          return false;
+        }
+        if (!divisionPattern.test(division)) {
+          alert("Please enter a valid division");
+          return false;
+        }
+        if (!emailPattern.test(email)) {
+          alert("Please enter a valid email");
+          return false;
+        }
+        // if (!passwordPattern.test(password)) {
+        //   alert('Password must be at least 8 characters long and contain at least one letter and one number');
+        //   return false;
+        // }
+        if (password !== cnfPassword) {
+          alert("Passwords do not match");
+          return false;
+        }
+        if (branch === "") {
+          alert("Please select a branch");
+          return false;
+        }
+        if (confirm("Are you sure you want to submit the form?")) {
+          form.submit();
+        }
+        return true;
+      });
+    </script>
+  </body>
 </html>

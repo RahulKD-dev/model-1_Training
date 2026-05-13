@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting Card</title>
+    <style>
+          * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url(https://cdn.pixabay.com/photo/2014/05/22/21/54/greeting-351507_960_720.jpg);
+            background-size: cover;
+            background-blend-mode: soft-light;
+          }
+
+          aside {
+            width: 30%;
+            padding: 15px;
+            margin-left: 15px;
+            float: right;
+            font-style: italic;
+            background-color: lightgray;
+          }
+          .text-overlay {
+            position: absolute;
+            top: 200px; /* vertical center */
+            left: 490px; /* horizontal center */
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 10px;
+            text-shadow: 2px 2px 4px rgba(221, 146, 146, 0.7);
+            border-radius: 5px;
+          }
+          .para-overlay {
+            position: absolute;
+            top: 450px;
+            left: 490px; 
+            transform: translate(-50%, -50%);
+            padding: 15px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 1.2rem; 
+            color: #2f1d1d; 
+            text-align: center;
+            line-height: 1.6; 
+            background: rgba(255, 105, 180, 0.1); 
+            border-radius: 12px; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.8); 
+            max-width: 500px; 
+            margin: 20px auto;
+          }
+    </style>
+  </head>
+  <body>
+    <h1
+      style="
+        color: rgba(215, 182, 182, 0.684);
+        padding-left: 30px;
+        padding-top: 10px;
+        font-size: 50px;
+        font-family:
+          Snell Roundhand,
+          cursive;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      "
+    >
+    Greeeting Card.....!
+    </h1>
+    <aside>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d29779.67823908643!2d72.52296212444496!3d23.10089668827573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e82e76893cd85%3A0xd302251c8dc381c6!2sGota%2C%20Ahmedabad%2C%20Gujarat!5e1!3m2!1sen!2sin!4v1778576605072!5m2!1sen!2sin"
+        width="420"
+        height="345"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </aside>
+    <section>
+      <div class="image-container">
+        <img
+          src="https://www.seekpng.com/png/full/103-1035222_white-square-outline-png-download-white-frame-png.png"
+          style="width: 68%; height: auto"
+          alt="Greeting Card"
+        />
+        <div class="text-overlay"> Happy Birthday Rahul</div>
+        <p class="para-overlay">
+          "You are warmly invited to join us in celebrating Rahul's special day!
+          Lets make this birthday unforgettable with laughter, joy, and
+          cherished memories together. The celebration will be filled with love,
+          fun, and happiness, and we would be delighted to have you with us as
+          we honor this wonderful occasion. Come share in the festivities and
+          help make his birthday truly extraordinary!"
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
